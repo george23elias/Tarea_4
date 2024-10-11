@@ -1,0 +1,66 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Forms
+
+<PageTitle>Registro de Película</PageTitle>
+
+<form class="row g-3 justify-content-end">
+    <div class="col-md-6">
+        <label for="Nombre" class="form-label">Nombre de la película</label>
+        <input type="text" class="form-control" id="Nombre" placeholder="Ingrese Nombre" required @bind="Nombre_Pelicula">
+    </div>
+    <div class="col-md-6">
+        <label for="Pais" class="form-label">País</label>
+        <select class="form-select" id="Pais" required @bind="Pais_Pelicula">
+            <option selected disabled value="">Elija...</option>
+            <option value="USA">Estados Unidos</option>
+            <option value="Mexico">México</option>
+            <option value="España">España</option>
+            <!-- Agrega más opciones según necesites -->
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label for="Idioma" class="form-label">Idioma</label>
+        <select class="form-select" id="Idioma" required @bind="Idioma_Pelicula">
+            <option selected disabled value="">Elija...</option>
+            <option value="Español">Español</option>
+            <option value="Inglés">Inglés</option>
+            <option value="Francés">Francés</option>
+            <!-- Agrega más opciones según necesites -->
+        </select>
+    </div>
+    <div class="col-6">
+        <label for="formFile" class="form-label">Ingresar Imagen</label>
+        <InputFile  OnChange="OnInputFileChange" /> <!-- Usa el componente InputFile correctamente -->
+    </div>
+    <div class="col-md-12">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Deja un comentario aquí" id="floatingTextarea2" style="height: 100px" @bind="Resumen_Pelicula"></textarea>
+            <label for="floatingTextarea2">Ingresar Resumen</label>
+        </div>
+    </div>
+    <div class="col-md-2 text-end">
+        <button class="btn btn-primary" type="submit">Enviar formulario</button>
+    </div>
+</form>
+
+@code {
+
+    private string Nombre_Pelicula { get; set; } = string.Empty;
+    private string Pais_Pelicula { get; set; } = string.Empty;
+    private string Idioma_Pelicula { get; set; } = string.Empty;
+    private string Resumen_Pelicula { get; set; } = string.Empty;
+
+    // Método asincrónico para manejar el cambio de archivo
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var selectedFile = e.File;
+        var buffer = new byte[selectedFile.Size];
+
+        using var stream = selectedFile.OpenReadStream();
+        await stream.ReadAsync(buffer);  // Lee el archivo de forma asincrónica
+
+        var fileName = selectedFile.Name;
+        Console.WriteLine("Archivo seleccionado: " + fileName);
+    }
+}

@@ -1,0 +1,19 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navContainer.NavLogo {
+}
+
+.navContainer .NavLista {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.NavListaLink {
+  color: black;
+}

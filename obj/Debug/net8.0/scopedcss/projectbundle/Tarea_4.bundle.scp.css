@@ -1,0 +1,20 @@
+/* _content/Tarea_4/Components/Layout/NavMenu.razor.rz.scp.css */
+.navContainer[b-euose4tubc] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navContainer.NavLogo[b-euose4tubc] {
+}
+
+.navContainer .NavLista[b-euose4tubc] {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.NavListaLink[b-euose4tubc] {
+  color: black;
+}
